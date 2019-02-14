@@ -10,12 +10,9 @@ function impact(games, top3, damage, kills, revives) {
         top3chance = top3 / games;
 
   /* Explanation of the success factor:
-     While the result mostly depends on other performance variables,
-     the ratio of a player's Top 3 placements and total games played should have some weight.
-
-     In order to not encourage camping, using a logarithmic scale does not heavily reward high ratios.
-     On the other end of the spectrum are those who take huge risks, like landing on a supply ship,
-     having high battle stats but rarely make it to the end game regardless; following scale punishes that.
+     While the end result mostly depends on other performance variables,
+     the ratio between player's Top 3 placements and total games played should have some weight.
+     Using a logarithmic scale discourages both camping and unsuccessful early game risk taking.
 
      Examples:
      Chance to get to Top 3 | Success factor
@@ -26,7 +23,7 @@ function impact(games, top3, damage, kills, revives) {
      70 %                   | 0.87 (+0.10)
      90 %                   | 0.96 (+0.09)
 
-     Therefore farming Top 3 ratio would have diminishing returns.
+     Therefore just farming Top 3 ratio would have diminishing returns.
   */
   const successFactor = 1 - Math.log10(top3chance);
 
@@ -67,7 +64,7 @@ function impact(games, top3, damage, kills, revives) {
       <div class="hero">
         <div class="hero-body">
           <h1>Result: <span id="result" style="color:GoldenRod;"></span></h1>
-          <p><a href="https://github.com/Phokof/Apex/blob/master/index.html#L6-L34">How is this calculated?</a></p>
+          <p><a href="https://github.com/Phokof/Apex/blob/master/index.html#L6-L31">How is this calculated?</a></p>
         </div>
       </div>
     </div>
