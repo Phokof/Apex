@@ -30,7 +30,7 @@ function impact(games, top3, damage, kills, revives) {
   */
   const successFactor = 1 - Math.log10(top3chance);
 
-  return damagePerGame * killsRevsPerGame * successFactor;
+  return damagePerGame * killsRevsPerGame * successFactor || 0;
 }
 </script>
 <title>Apex Legends Performance Rating Calculator</title>
@@ -40,28 +40,28 @@ function impact(games, top3, damage, kills, revives) {
   <h1>Apex Legends - Performance Rating Calculator</h1>
   <div class="columns">
     <div class="column col-3">
-      <div class="form-group">
+      <form class="form-group" id="stats">
         <fieldset>
           <legend>Please input a legend's stats:</legend>
 
-          <label class="form-label" for="games">Games Played:</label>
+          <label class="form-label" for="games">Games Played: <span id="not-enough-games" style="color:red;" hidden>This value must be equal or greater than 30</span></label>
           <input class="form-input" name="games" type="number" min="30" required>
 
           <label class="form-label" for="top3">Times Placed Top 3:</label>
-          <input class="form-input" name="top3" type="number" min="0" required>
+          <input class="form-input" name="top3" type="number" min="0">
 
           <label class="form-label" for="damage">Damage Done:</label>
-          <input class="form-input" name="damage" type="number" min="0" required>
+          <input class="form-input" name="damage" type="number" min="0">
 
           <label class="form-label" for="kills">Kills:</label>
-          <input class="form-input" name="kills" type="number" min="0" required>
+          <input class="form-input" name="kills" type="number" min="0">
 
           <label class="form-label" for="revives">Revives:</label>
-          <input class="form-input" name="revives" type="number" min="0" required>
+          <input class="form-input" name="revives" type="number" min="0">
 
         </fieldset>
         <input type="submit" value="Calculate">
-      </div>
+      </form>
     </div>
     <div class="column col-9" id="results" hidden>
       <div class="hero">
@@ -75,7 +75,7 @@ function impact(games, top3, damage, kills, revives) {
 </div>
 <body>
   <script type="text/javascript">
-  document.querySelector('input[type="submit"]').addEventListener('click', evt => {
+  document.querySelector('form#stats').addEventListener('submit', evt => {
     evt.preventDefault();
     let score = impact(
       parseInt(document.querySelector('input[name="games"]').value),
