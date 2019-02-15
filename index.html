@@ -70,8 +70,8 @@ function impact(games, top3, damage, kills, revives) {
     </div>
   </div>
 </div>
-<body>
-  <script type="text/javascript">
+</body>
+<script type="text/javascript">
   document.querySelector('form#stats').addEventListener('submit', evt => {
     evt.preventDefault();
     let score = impact(
@@ -84,5 +84,5 @@ function impact(games, top3, damage, kills, revives) {
     document.querySelector('#result').textContent = String(Math.round(score));
     document.querySelector('#results').hidden = false;
   });
-  </script>
+</script>
 </html>
