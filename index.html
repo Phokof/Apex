@@ -13,15 +13,13 @@ function impact(games, top3, damage, kills, revives) {
 </script>
 <style>
 .container {
-  background: url('/src/bangalore.png') no-repeat center center fixed;
+  color: #eee;
+  background: url('bangalore.png') no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
   min-height: 100vh;
-}
-label, legend, h2 {
-  color: #eee;
 }
 h1, #result {
   color: #DAA520;
@@ -33,12 +31,12 @@ h1 {
     -1px 1px 0 #000,
     1px 1px 0 #000;
 }
-#result {
-  color: #DAA520;
-}
 .content {
   background-color: rgba(0, 0, 0, 0.6);
   padding: 2em 0em 2em 0em;
+}
+#result {
+  color: #DAA520;
 }
 form#stats input[type=submit] {
   padding: 5px 15px;
@@ -99,7 +97,7 @@ form#stats input[type=submit] {
       <div class="hero">
         <div class="hero-body" id="results" hidden>
           <h2>Rating: <span id="result"></span></h2>
-          <p><a href="https://github.com/Phokof/Phokof.github.io/blob/master/index.html#L6-L12">How is this calculated?</a></p>
+          <p><a id="show-explanation" href="#">How is this calculated?</a><span id="explanation" hidden>The result is calculated with the follwing formula:<br><i>Avg. damage × (Avg. kills + Avg. revives) × Top 3 placement ratio</i></span></p>
         </div>
       </div>
     </div>
@@ -114,6 +112,7 @@ form#stats input[type=submit] {
   submitButton.value = 'Calculate';
   submitButton.disabled = false;
 
+  // Handle submit
   document.querySelector('form#stats').addEventListener('submit', evt => {
     evt.preventDefault();
     let score = impact(
@@ -125,6 +124,11 @@ form#stats input[type=submit] {
     );
     document.querySelector('#result').textContent = String(Math.round(score));
     document.querySelector('#results').hidden = false;
+  });
+
+  document.querySelector('#show-explanation').addEventListener('click', _ => {
+    document.querySelector('#show-explanation').hidden = true;
+    document.querySelector('#explanation').hidden = false;
   });
 </script>
 </html>
