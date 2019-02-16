@@ -5,9 +5,9 @@
 <script type="text/javascript">
 function impact(games, top3, damage, kills, revives) {
   if (games === 0) return 0;
-  const damagePerGame = damage / games, // Average damage dealt per game.
-        killsAndRevsPerGame = (kills + revives) / games, // Average sum of kills and revives per game.
-        top3chance = top3 / games; // The chance of placing in Top 3.
+  const damagePerGame = damage / games || 0, // Average damage dealt per game.
+        killsAndRevsPerGame = (kills + revives) / games || 0, // Average sum of kills and revives per game.
+        top3chance = top3 / games || 0; // The chance of placing in Top 3.
   return damagePerGame * killsAndRevsPerGame * (1 + top3chance);
 }
 </script>
@@ -15,8 +15,17 @@ function impact(games, top3, damage, kills, revives) {
 </head>
 <body>
 <div class="container">
-  <h1>Apex Legends Performance Rating Calculator</h1>
   <div class="columns">
+    <div class="column col-1">
+    </div>
+    <div class="column col-10">
+      <h1>Apex Legends Performance Rating Calculator</h1>
+    </div>
+    <div class="column col-1">
+    </div>
+    <div class="column col-1">
+    </div>
+
     <div class="column col-2">
       <form class="form-group" id="stats">
         <fieldset>
@@ -38,10 +47,10 @@ function impact(games, top3, damage, kills, revives) {
           <input class="form-input" name="revives" type="number" min="0">
 
         </fieldset>
-        <input type="submit" value="Calculate">
+        <input type="submit" value="Requires JavaScript" disabled>
       </form>
     </div>
-    <div class="column col-10" id="results" hidden>
+    <div class="column col-8" id="results" hidden>
       <div class="hero">
         <div class="hero-body">
           <h1>Rating: <span id="result" style="color:GoldenRod;"></span></h1>
@@ -49,10 +58,17 @@ function impact(games, top3, damage, kills, revives) {
         </div>
       </div>
     </div>
+    <div class="column col-1">
+    </div>
   </div>
 </div>
 </body>
 <script type="text/javascript">
+  // Enable submit button
+  let submitButton = document.querySelector('form#stats input[type="submit"]');
+  submitButton.value = 'Calculate';
+  submitButton.disabled = false;
+
   document.querySelector('form#stats').addEventListener('submit', evt => {
     evt.preventDefault();
     let score = impact(
