@@ -14,7 +14,7 @@ function impact(games, top3, damage, kills, revives) {
 <style>
 .container {
   color: #eee;
-  background: url('bangalore.png') no-repeat center center fixed;
+  background: url('/src/bangalore.min.png') no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -126,9 +126,17 @@ form#stats input[type=submit] {
     document.querySelector('#results').hidden = false;
   });
 
+  // Handle displaying calculation's explanation
   document.querySelector('#show-explanation').addEventListener('click', _ => {
     document.querySelector('#show-explanation').hidden = true;
     document.querySelector('#explanation').hidden = false;
   });
+  
+  // Load high resolution background image
+  const hiResBg = '/src/bangalore.png';
+  new Image(hiResBg);
+  hrbgimg.onload = _ => {
+    document.querySelector('.container').style.backgroundImage = hiResBg;
+  };
 </script>
 </html>
