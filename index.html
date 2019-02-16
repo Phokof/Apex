@@ -131,12 +131,5 @@ form#stats input[type=submit] {
     document.querySelector('#show-explanation').hidden = true;
     document.querySelector('#explanation').hidden = false;
   });
-  
-  // Load high resolution background image
-  const hiResBg = '/src/bangalore.png';
-  new Image(hiResBg);
-  hiResBg.onload = _ => {
-    document.querySelector('.container').style.backgroundImage = hiResBg;
-  };
 </script>
 </html>
