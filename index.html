@@ -135,7 +135,7 @@ form#stats input[type=submit] {
   // Load high resolution background image
   const hiResBg = '/src/bangalore.png';
   new Image(hiResBg);
-  hrbgimg.onload = _ => {
+  hiResBg.onload = _ => {
     document.querySelector('.container').style.backgroundImage = hiResBg;
   };
 </script>
