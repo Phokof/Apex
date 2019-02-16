@@ -11,6 +11,36 @@ function impact(games, top3, damage, kills, revives) {
   return damagePerGame * killsAndRevsPerGame * (1 + top3chance);
 }
 </script>
+<style>
+.container {
+  background: url('/src/bangalore.png') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  min-height: 100vh;
+}
+label, legend, h2 {
+  color: #eee;
+}
+h1, #result {
+  color: #DAA520;
+}
+h1 {
+  text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+}
+.content {
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 2em 0em 2em 0em;
+}
+#result {
+  color: #DAA520;
+}
+</style>
 <title>Apex Legends Performance Rating Calculator</title>
 </head>
 <body>
@@ -19,14 +49,18 @@ function impact(games, top3, damage, kills, revives) {
     <div class="column col-1">
     </div>
     <div class="column col-10">
-      <h1>Apex Legends Performance Rating Calculator</h1>
-    </div>
-    <div class="column col-1">
+      <div class="hero">
+        <div class="hero-body">
+          <h1>Apex Legends<br>Performance Rating Calculator</h1>
+        </div>
+      </div>
     </div>
     <div class="column col-1">
     </div>
 
-    <div class="column col-2">
+    <div class="column col-1 content">
+    </div>
+    <div class="column col-2 content">
       <form class="form-group" id="stats">
         <fieldset>
           <legend>Please input a legend's stats:</legend>
@@ -50,15 +84,17 @@ function impact(games, top3, damage, kills, revives) {
         <input type="submit" value="Requires JavaScript" disabled>
       </form>
     </div>
-    <div class="column col-8" id="results" hidden>
+    <div class="column col-1 content">
+    </div>
+    <div class="column col-7 content">
       <div class="hero">
-        <div class="hero-body">
-          <h1>Rating: <span id="result" style="color:GoldenRod;"></span></h1>
+        <div class="hero-body" id="results" hidden>
+          <h2>Rating: <span id="result"></span></h2>
           <p><a href="https://github.com/Phokof/Phokof.github.io/blob/master/index.html#L6-L12">How is this calculated?</a></p>
         </div>
       </div>
     </div>
-    <div class="column col-1">
+    <div class="column col-1 content">
     </div>
   </div>
 </div>
