@@ -5,29 +5,10 @@
 <script type="text/javascript">
 function impact(games, top3, damage, kills, revives) {
   if (games === 0) return 0;
-  const damagePerGame = damage / games,
-        killsRevsPerGame = (kills + revives) / games, // We consider kills and revives equal
-        top3chance = top3 / games;
-
-  /* Explanation of the success factor:
-     While the end result mostly depends on other performance variables,
-     the ratio between player's Top 3 placements and total games played should have some weight.
-     Using a logarithmic scale discourages both camping and unsuccessful early game risk taking.
-
-     Examples:
-     Chance to get to Top 3 | Success factor
-     ---------------------------------------
-     10 %                   | 0.50
-     30 %                   | 0.66 (+0.16)
-     50 %                   | 0.77 (+0.11)
-     70 %                   | 0.87 (+0.10)
-     90 %                   | 0.96 (+0.09)
-
-     Therefore just farming Top 3 ratio would have diminishing returns.
-  */
-  const successFactor = 1 - Math.log10(top3chance);
-
-  return damagePerGame * killsRevsPerGame * successFactor || 0;
+  const damagePerGame = damage / games, // Average damage dealt per game.
+        killsAndRevsPerGame = (kills + revives) / games, // Average sum of kills and revives per game.
+        top3chance = top3 / games; // The chance of placing in Top 3.
+  return damagePerGame * killsAndRevsPerGame * (1 + top3chance);
 }
 </script>
 <title>Apex Legends Performance Rating Calculator</title>
@@ -64,7 +45,7 @@ function impact(games, top3, damage, kills, revives) {
       <div class="hero">
         <div class="hero-body">
           <h1>Rating: <span id="result" style="color:GoldenRod;"></span></h1>
-          <p><a href="https://github.com/Phokof/Phokof.github.io/blob/master/index.html#L6-L31">How is this calculated?</a></p>
+          <p><a href="https://github.com/Phokof/Phokof.github.io/blob/master/index.html#L6-L12">How is this calculated?</a></p>
         </div>
       </div>
     </div>
